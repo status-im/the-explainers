@@ -26,6 +26,20 @@ In short, it should look like this:
 
 ![](https://imgur.com/vZNBua8.png)
 
+### To become a translator
+
+1. Fork this repo
+2. Create a new locale folder under an existing post's parent folder (i.e. `01-validators/es_ES/`) and also put the translated content into a file named `final.md`
+3. Submit a PR with the translation
+
+### About images
+
+To include images in your posts:
+
+- put them into an images folder outside of all locales. So into `01-validators/images` in our example
+- make sure they are optimized. Use ImageOptimize or Compressor.io and similar services and tools, they're great
+- include them in posts as relative path to the markdown file. They will be uploaded to a dedicated CDN on publication
+
 ### To become a reviewer
 
 1. Just chime in with comments.
@@ -66,3 +80,17 @@ Well, it's all public domain so technically, _anyone_. We don't feel like we nee
 - the translations of content can be published elsewhere. We'll leave that up to the interested parties to decide. Our aim is to disseminate the content as far and as wide as possible.
 
 If you'd rather keep all rights or use the content commercially, we ask that you leave us alone and open your own similar repo - it's why it's public after all.
+
+## Why?
+
+- Why Github?
+
+It makes for a nice open content repository which we can more around automatically later, rather than being locked into silos like Medium.
+
+- Why Markdown?
+
+It's a common plaintext format that's easy to read and master, compatible with a bunch of CMSes out of the box and is easy to transport and write without corruption or special tools
+
+- Why peer review?
+
+It's just an experiment to see if we get more engagement, and to keep our principle of openness and transparency alive and kicking.
