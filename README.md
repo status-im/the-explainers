@@ -1,5 +1,7 @@
 # The Explainers
 
+![](header.png)
+
 The Explainers Initiative is an open effort to bring technical content regarding the Serenity upgrade of the Ethereum blockchain closer to non-technical and semi-technical communities.
 
 Inspired by the very successful [Peer Review at SitePoint](https://github.com/sitepoint-editors/php-peers) and [Bitfalls](https://github.com/sitepoint-editors/php-peers), the purpose of this repository is to be able to publicly draft Ethereum 2.0 content (tutorials, explanations, guides) and get feedback on in-progress posts by anyone who's interested - peer review style.
