@@ -1,6 +1,7 @@
 # The Explainers
 
 ![](header.png)
+<a href="https://www.freepik.com/free-photos-vectors/banner">Banner vector created by Freepik</a>
 
 The Explainers Initiative is an open effort to bring technical content regarding the Serenity upgrade of the Ethereum blockchain closer to non-technical and semi-technical communities.
 
