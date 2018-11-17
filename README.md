@@ -1,5 +1,7 @@
 # The Explainers
 
+[![Join the chat at https://gitter.im/status-im/the-explainers](https://badges.gitter.im/status-im/the-explainers.svg)](https://gitter.im/status-im/the-explainers?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![](header.png)
 
 The Explainers Initiative is an open effort to bring technical content regarding the Serenity upgrade of the Ethereum blockchain closer to non-technical and semi-technical communities.
