@@ -30,7 +30,7 @@ Once the state of Nimbus is at feature parity with current clients, the team wil
 
 ## Modularity
 
-In order to fulfill its goal of running on low end and embedded devices, Nimbus will have to be extremely customizable. The ultimate goal is to have it support a plug and play module system in the form of APIs interacting with the Nimbus core.
+In order to fulfil its goal of running on low end and embedded devices, Nimbus will have to be extremely customizable. The ultimate goal is to have it support a plug and play module system in the form of APIs interacting with the Nimbus core.
 
 Specifically, Nimbus will have different forms of builds. You'll be able to use its source code with certain flags (options) indicating what and how to build your copy of Nimbus - a copy you're putting onto a Nokia 3310 or into a smart oven won't be the same as a copy on a powerful desktop machine and that won't be the same as a copy you'll be installing into a microusb to plug into a hidden public USB outlet to covertly decentralize the network 🕵️‍♂️
 
