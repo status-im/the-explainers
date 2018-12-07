@@ -33,7 +33,7 @@ Serenity is coming in 4 distinct phases which will - when put together - take so
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-- The first phase, called Phase Zero (we developers like to start counting from zero) or _the beacon chain phase_ will focus on getting the Proof of Stake beacon chain with validators up and running
+- The first phase, called Phase Zero (we developers like to start counting from zero) or _the_ [_beacon chain_](https://our.status.im/two-point-oh-the-beacon-chain/) _phase_ will focus on getting the Proof of Stake beacon chain with validators up and running
 - The 2nd phase will focus on adding shards as data, something we'll explain in a future post
 - The 3rd phase will allow for transfer of this data across shards or within shards, i.e. smart contracts. Yes, this means that smart contracts will not be operational for a good while on the new Ethereum
 - The 4th phase will, in Vitalik's own words, be tweaks and optimizations of this new world computer
@@ -46,7 +46,7 @@ A validator who proposes is called a _proposer_, while a validator who validates
 
 Here's where things branch out a little more.
 
-Validators are picked from a big list of validators registered on something called the _beacon chain_ (we'll cover that in the next post). They are picked by a part of the blockchain in charge of selecting random numbers (a randomizer known as RANDAO+VDF) and those validators that are picked make a _committee_.
+Validators are picked from a big list of validators registered on something called the [beacon chain](https://our.status.im/two-point-oh-the-beacon-chain/). They are picked by a part of the blockchain in charge of selecting random numbers (a randomizer known as RANDAO+VDF) and those validators that are picked make a _committee_.
 
 When some validators are picked to be the committee, they are responsible for _attesting to a state_, i.e. building the next block. This can happen in a timeframe we call a _slot_ (one slot means one proposal of a block and attestations from other validators that this block is A-OK), and a set of slots during which all the randomly picked validators have had the opportunity to make an attestation is called a _cycle_.
 
@@ -74,7 +74,7 @@ Slow down there, knowledge-thirsty reader! Let's tackle these one by one.
 
 ## Nimbus' implementation
 
-Validators are a big part of the Beacon Chain, and our team is working hard on delivering a proof of concept Beacon client by March 2019. What we'll be delivering first is a client which can run a beacon chain in cooperation with other teams' clients or other Nimbus instances. 
+Validators are a big part of the [Beacon Chain](https://our.status.im/two-point-oh-the-beacon-chain/), and our team is working hard on delivering a proof of concept Beacon client by March 2019. What we'll be delivering first is a client which can run a beacon chain in cooperation with other teams' clients or other Nimbus instances. 
 
 ![Networking](../images/05.png)
 
@@ -82,6 +82,6 @@ Stay tuned for further updates, we'll update this space as we make progress.
 
 ## Conclusion
 
-A validator is the modern "miner", but one who does not waste electricity to confirm transactions - instead, a validator builds blockchain blocks from transactions if selected by the system and other validators attest his actions. These groups of validators together form the new chain, and no one validator is more powerful than the next. To become a validator, a user must send 32 ether to a smart contract on the current proof-of-work blockchain which generates a receipt or a "validator membership card" on the beacon chain.
+A validator is the modern "miner", but one who does not waste electricity to confirm transactions - instead, a validator builds blockchain blocks from transactions if selected by the system and other validators attest his actions. These groups of validators together form the new chain, and no one validator is more powerful than the next. To become a validator, a user must send 32 ether to a smart contract on the current proof-of-work blockchain which generates a receipt or a "validator membership card" on the [beacon chain](https://our.status.im/two-point-oh-the-beacon-chain/).
 
 Continue reading the Two Point Oh series by following the [Nimbus blog](https://our.status.im/tag/nimbus/), or the [Two Point Oh tag](https://our.status.im/tag/two-point-oh/).
