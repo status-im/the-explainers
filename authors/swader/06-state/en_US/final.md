@@ -1,12 +1,16 @@
-Let's explain how the state transition (i.e. chain growth) in the new [Beacon Chain](https://our.status.im/two-point-oh-the-beacon-chain/) works. We'll use Nimbus' own implementation to document and illustrate things for clarity. For simplicity, we'll consider a Beacon Node and a [Validator](https://our.status.im/two-point-oh-explaining-validators/) to be one united entity.
+Let's explain how the state transition (i.e. chain growth) in the new [Beacon Chain](https://our.status.im/two-point-oh-the-beacon-chain/) works. We'll use Nimbus' own implementation to document and illustrate things for clarity. For simplicity, we'll consider a Beacon Node and a [Validator](https://our.status.im/two-point-oh-explaining-validators/) to be one entity.
 
-Note that this only applies to the Beacon chain - not the shard chains. The Beacon chains grows differently from the way shard chains work.
+Note that this only applies to the Beacon chain - not the shard chains. The Beacon chain grows differently from the way shard chains work.
 
 The code examples below will be taken from Nimbus' [state transition code](https://github.com/status-im/nim-beacon-chain/blob/master/beacon_chain/state_transition.nim).
 
 ## Genesis
 
-The genesis block - the chain's first block - has some sort of starting state. As [explained previously](https://our.status.im/two-point-oh-the-tale-of-two-ethers/), one can become a validator by depositing 32 ether into a registration contract.
+The genesis block - the chain's first block - has some sort of starting state. As [explained previously](https://our.status.im/two-point-oh-the-tale-of-two-ethers/), one can become a validator by depositing 32 ether into a registration contract. Along with this deposit, one would send extra data indicating their RANDAO commitment and their desired output shard (where they want the money to go when they stop validating). In Nimbus, we simulate this.
+
+```
+
+```
 
 
 

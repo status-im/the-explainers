@@ -1,6 +1,4 @@
-I'm an operating system purist. Not in the sense that I think one operating system is better than others, but in that I like my computers to last long without having to reinstall everything, so I prefer running everything non-essential in virtual machines.
-
-As I recently transitioned from OS X back to Windows for development work, I took it upon me to reconfigure my old virtual setup which I want to share with you all - it'll help you not only run and develop modern Nim code, but will also let you run Nimbus and the nim-beacon-chain without installing a bunch of packages and tools globally across your whole OS - regardless of which one it is. This procedure works on any machine equally well.
+This process will help you not only run and develop modern Nim code, but will also let you run Nimbus and the nim-beacon-chain without installing a bunch of packages and tools globally across your whole OS - regardless of which one it is. This procedure works on any machine equally well.
 
 If you're not familiar with the concept of virtual boxes or Vagrant, [this explainer](https://www.sitepoint.com/re-introducing-vagrant-right-way-start-php/) will help. Let's begin.
 
@@ -16,11 +14,13 @@ Vagrant uses boxes, predefined virtual machine templates to power up virtual mac
 For this purpose, I've made a handy box that takes care of most things on its own (and is very webdev friendly as well). In the console / terminal, clone the box setup like so:
 
 ```bash
-git clone git@githb.com:swader/homestead_improved hi_nimbus; cd hi_nimbus
+git clone git@githb.com:status-im/nim-vagrant nimbox; cd nimbox
 ./bin/folderfix.sh
 ```
 
-The first command clones the "recipe". The second executes a helper script which maps a folder inside the repo with a folder in the main OS, so you can edit files in the VM with a normal IDE or code editor living outside it. The `Code` folder inside the VM will match the root folder of this project.
+The first command clones the "recipe". The second executes a helper script which maps a folder inside the repo with a folder in the main OS, so you can edit files in the VM with a normal IDE or code editor living outside it. The `Code` folder inside the VM will match the root folder of this project. You can do this manually as well, this is just a shortcut script.
+
+The `nim-vagrant` box comes with a lot of tools pre-installed - you can learn about them [here](https://laravel.com/docs/5.7/homestead) - but it also comes with the latest version of Nim, and RocksDB pre-installed.
 
 ---
 
@@ -30,14 +30,14 @@ If on Windows, please consider the following performance optimization: install t
 
 ```yaml
 folders:
-    - map: c:/Users/Bruno/vms/hi_nimbus
+    - map: PATH_TO_THIS_FOLDER_BOX_ON_HOST_OS
       to: /home/vagrant/Code
       type: "nfs"  # <--- this is new
 ```
 
-This makes Vagrant use NFS for file system sharing which is much faster than the default. The plugin helps maintain file and folder permissions across the nexted operating systems.
+This makes Vagrant use NFS for file system sharing which can be much faster than the default. The plugin helps maintain file and folder permissions across the nested operating systems.
 
-For even more performance, try upping the RAM and CPU dedicated to this VM by modifying the values at the top of `Homestead.yaml`.
+If you end up needing more performance, try upping the RAM and CPU dedicated to this VM by modifying the values at the top of `Homestead.yaml`.
 
 ---
 
@@ -47,13 +47,13 @@ Next, we'll execute:
 vagrant up
 ```
 
- This boots up the virtual machine. The `vagrant up` command executes the provisioning process which installs some prerequisite software, which shouldn't take long (it will be even faster one we add a precompiled version of Nim into the box, so it doesn't have to build from source during provisioning). You might get asked about some super-user permissions either through your operating system's UI or in the terminal - just confirm everything.
-
-## Nim
+ This boots up the virtual machine. The `vagrant up` command executes the provisioning process which installs some prerequisite software, which shouldn't take long. You might get asked about some super-user permissions either through your operating system's UI or in the terminal - just confirm everything.
 
 You can now enter the VM with the command `vagrant ssh`. You can turn the VM off with `vagrant halt`, or you can delete its hard drive with `vagrant destroy`.
 
 _Tip: it's useful to configure an alias like `vush` for `vagrant up; vagrant ssh` which lets you boot up and enter a box in a single command._
+
+## Nim
 
 Once inside the VM, we can check the version of Nim that the provisioning process installed.
 
@@ -75,21 +75,12 @@ In the VM (`vagrant ssh`), to try out Nimbus:
 git clone https://github.com/status-im/nimbus
 cd nimbus
 nimble install
-```
-
-This installs the Nim dependencies, but Nimbus also needs Rocksdb which is... a little harder to install.
-
-```bash
-git clone https://github.com/facebook/rocksdb.git; cd rocksdb
-DEBUG_LEVEL=0 make shared_lib install-shared
-export LD_LIBRARY_PATH=/usr/local/lib
-```
-
 nimble test
-./bin/nimbus
 ```
 
-This should first produce some test output, and then run Nimbus. Depending on its current state of development, it might work up to block 50000 or so.
+This should first produce some successful test output. 
+
+To run Nimbus, execute `nimbus/nimbus`. Depending on its current state of development (constantly in flux), it might work up to block 50000 or so.
 
 To get started with Nim-beacon-chain:
 
@@ -101,7 +92,7 @@ cd nim-beacon-chain; nimble install; nimble test
 The beacon chain proof of concept currently only passes some tests, but you can also run a simulation which boots up several instances and generates a hundred mock-validators, then starts processing blocks.
 
 ```bash
-
+tests/simulation/start.sh
 ```
 
 Congrats! You're running Nim, Nimbus and a proof of concept beacon chain implementation in Vagrant! Now you're ready to file bugs and contribute to the projects!
@@ -116,6 +107,8 @@ That said, we will be offering Docker boxes too.
 
 ### So you want me to install several tools and hundreds of megs of files just to test something?
 
-Yes, but the sacrifice is well worth it. By installing Vagrant and Virtualbox, you're actually setting yourself up for a long-term clean computer. Installing software on Linux is like placing a lego castle into a room and shooting it with a shotgun. Blocks everywhere. Wouldn't it be easier if we could put a nylon barrier around the castle and catch the pieces? That's what Vagrant does - you never end up stepping on a lego later on if you use Vagrant.
+Yes, but the sacrifice is well worth it. By installing Vagrant and Virtualbox, you're actually setting yourself up long-term with a clean computer. 
 
-What's more, you can use this same box for your webdev work or any other programming.
+Installing software on *nix  in general is like placing a Lego castle into a room and shooting it with a shotgun. Blocks everywhere. Wouldn't it be easier if we could put a wall around the castle and catch the pieces? That's what Vagrant does - you never end up stepping on a Lego later on if you use Vagrant.
+
+What's more, you can use this same box for any other programming you need to do.
