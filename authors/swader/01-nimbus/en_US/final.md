@@ -1,5 +1,3 @@
-# Nimbus for Newbies
-
 [Nimbus](https://nimbus.status.im) is a new client for Ethereum's next stage of development. It's a new [node](https://bitfalls.com/2017/11/26/whats-bitcoin-node-mining-vs-validation/), if you will. If you're an Ethereum protocol layperson and are trying to understand what Nimbus actually is right now, you've come to the right place.
 
 We'll discuss sharding, scaling, and everything the [announcement post mentions](https://blog.status.im/introducing-nimbus-3360367bb311) in another post (or [several](https://our.status.im/tag/two-point-oh)) - the intention here is to get you familiar with Nimbus in a way that teaches you what Nimbus is _today_.
@@ -8,7 +6,7 @@ We want you to understand what this tool is, why it's here, how to use it and ho
 
 ## What is Nimbus right now?
 
-!["What is my purpose?" - Butter-Passing Robot](../images/01.png)
+!["What is my purpose?" - Butter-Passing Robot](https://our.status.im/content/images/2019/01/01.png)
 
 For a broad overview of what it _wants to be_, see [the announcement](https://blog.status.im/introducing-nimbus-3360367bb311).
 
@@ -16,7 +14,7 @@ As of October 2018 - it's a set of tools which executes and passes a set of unit
 
 This is what a beautiful screen of passing tests looks like.
 
-![](../images/02.png)
+![Passing tests](https://our.status.im/content/images/2019/01/02.png)
 
 As of December 2018, Nimbus will sync the proof of work Ethereum blockchain up to block 49439 and then crash. We're slowly but surely ironing out our implementation of the EVM and working towards a stable full chain sync. [Help us debug it!](https://github.com/status-im/nimbus/issues)
 
@@ -24,7 +22,7 @@ At the same time, the Ethereum 2.0 side of Nimbus is being developed in the [nim
 
 ## So What's The Point?
 
-![Nimbus' target](../images/03.png)
+![Nimbus' target](https://our.status.im/content/images/2019/01/03.png)
 
 Right now, the team is developing a set of tools and libraries to satisfy the requirements of Ethereum 2.0: sharding support, scaling methods, fork choice, network simulation, testnet, etc. Despite this focus, Nimbus will eventually be an alternative to [Geth](https://bitfalls.com/2018/02/12/explaining-ethereum-tools-geth-mist/) and Parity as a full Ethereum node, but will also include features that can make it run as a _light node_ - a node that doesn't need to download the full blockchain - or even a [_stateless_](https://ethresear.ch/t/the-stateless-client-concept/172) node - a node that doesn't need to download state at all to be able to verify it.
 
@@ -40,7 +38,7 @@ Specifically, Nimbus will have different forms of builds. You'll be able to use 
 
 And, yes, you'll be able to do all this.
 
-![Nimbus, you champ](../images/04.png)
+![Nimbus, you champ](https://our.status.im/content/images/2019/01/04.png)
 
 Interfaces (like JSON-RPC, or one for embedded Java) will be developed for the different operating systems Nimbus is being installed on - we're focusing on open hardware, but we're not planning to leave any platform behind. Nimbus will provide an [EVM-C interface](https://github.com/ethereum/evmc), for example, so all clients that use it will be able to choose if they want to use Aleth, Geth or Nimbus.
 
@@ -50,7 +48,7 @@ Another modular part will be the back-end (SQLite or RocksDB), the logging (cons
 
 Yes and no. It's been a mission of Ethereum from day 0 to have multiple client implementations available at all times for the sake of network health and stability in case of bugs in one version. As an example, a bug in Bitcoin Core will hurt the entire Bitcoin blockchain because Bitcoin Core is used in [95% of the cases](https://coin.dance/nodes).
 
-![](../images/05.png)
+![Unbalanced nodes distribution in BTC](https://our.status.im/content/images/2019/01/05.png)
 
 This is unacceptable in Ethereum, so we strive to diversify client implementations as much and as evenly as possible. Right now, Ethereum has Parity vs. Geth distributed [relatively evenly](https://www.ethernodes.org/network/1) with dust of other implementations sprinkled in between. The goal is to have some form of Nimbus take up at least a quarter of that pie.
 
@@ -75,6 +73,7 @@ Clone Nimbus.
 git clone git@github.com:status-im/nimbus
 cd nimbus
 ```
+
 ### Dependencies
 
 To run Nimbus, we'll need the RocksDB database and a newer version of Nim. On OS X, execute:
@@ -101,13 +100,13 @@ _Note - Windows requires you to add programs you want to be able to execute from
 
 Next, run:
 
-```
+```bash
 make fetch-dlls
 ```
 
-or 
+or
 
-```
+```bash
 mingw32make.exe fetch-dlls
 ```
 
@@ -129,7 +128,7 @@ On Windows:
 make
 ```
 
-or 
+or
 
 ```bash
 mingw32make.exe
@@ -151,8 +150,7 @@ make test # (or mingw32make.exe test on Win if you use mingw32)
 
 This is what passing tests look like.
 
-![](../images/06.png)
-
+![Passing tests](https://our.status.im/content/images/2019/01/06.png)
 
 To update the source files for a rebuild:
 
@@ -179,7 +177,7 @@ You should now see attestations and blocks being produced and confirmed and a bu
 If you're re-running the simulation and want to start from scratch, use the following command:
 
 ```bash
-make clean_eth2_network_simulation
+make clean_eth2_network_simulation_files
 ```
 
 ---
