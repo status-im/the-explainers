@@ -174,7 +174,13 @@ To run and test the Ethereum 2.0 version of Nimbus (the network simulation):
 make eth2_network_simulation
 ```
 
-You should now see attestations and blocks being produced and confirmed and a bunch of other details from the nodes as they do their thing.
+You should now see attestations and blocks being produced and confirmed and a bunch of other details from the nodes as they do their thing. More information about this simulation can be found in [this post](https://our.status.im/nimbus-testnet-simulation).
+
+If you're re-running the simulation and want to start from scratch, use the following command:
+
+```bash
+make clean_eth2_network_simulation
+```
 
 ---
 
