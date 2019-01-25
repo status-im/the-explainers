@@ -49,7 +49,7 @@ These will then be used to generate a `startup.json` file with the registration 
 
 We assume the genesis happens at once meaning that the slot counter starts ticking from 0 at this point.
 
-![[Initial state built](https://our.status.im/content/images/2019/01/02-1.png)
+![Initial state built](https://our.status.im/content/images/2019/01/02-1.png)
 
 ```json
 {
