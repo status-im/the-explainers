@@ -6,7 +6,7 @@ This short post will introduce you to what the simulation does, how to run it on
 
 ## Running the simulation
 
-The full process is still explained in the [original Nimbus for Newbies](https://our.status.im/nimbus-for-newbies/) post, but the TL;DR for getting the simulation up and running (after you've got a Nim environment set up) is:
+The full process is still explained in the [original Nimbus for Newbies](https://our.status.im/nimbus-for-newbies/) post, but the TL;DR for getting the simulation up and running is:
 
 ```bash
 git clone https://github.com/status-im/nimbus
@@ -14,7 +14,9 @@ cd nimbus
 make eth2_network_simulation
 ```
 
-Note that on Windows the `make` command might need to be replaced by `mingw32-make.exe` if that's what you're using. See [original post](https://our.status.im/nimbus-for-newbies/) for more information. Alternatively, run it in [our Vagrant box](https://our.status.im/setting-up-a-local-vagrant-environment-for-nim-development/), it works just as well.
+This process will also install a local version of [our stable fork of the Nim language](https://github.com/status-im/nim) so you can dive right in with the exact version we use.
+
+Note that on Windows the `make` command might need to be replaced by `mingw32-make.exe` if that's what you're using. See [original post](https://our.status.im/nimbus-for-newbies/) for more information on the difference. Alternatively, run it in [our Vagrant box](https://our.status.im/setting-up-a-local-vagrant-environment-for-nim-development/), it works just as well.
 
 If you've run the simulation before, a clean operation will be necessary to get a fresh state:
 
