@@ -8,7 +8,7 @@ O shardingu, skaliranju i svemu drugome što [članak najave](https://blog.statu
 
 ## Što je Nimbus sada?
 
-!["Koja je moja svrha?" - Robot koji dodaje maslac](../images/01.png)
+!["Koja je moja svrha?" - Robot koji dodaje maslac](/wp-content/uploads/2018/11/01.png)
 
 Za pregled onoga što Nimbus _želi_ biti, pogledajte [originalnu objavu](https://blog.status.im/introducing-nimbus-3360367bb311).
 
@@ -16,17 +16,19 @@ Trenutno, u studenom 2018, Nimbus je set alata koji uspješno prolazi neke softv
 
 Ovako izgleda prekrasni ekran uspješnih testova.
 
-![](../images/02.png)
+![](/wp-content/uploads/2018/11/02.png)
 
-Trenutno Nimbus neće učiniti ništa značajno prilikom pokretanja. Spojiti će se na internet no ne može biti korišten za spajanje na neki [novčanik](https://bitfalls.com/hr/2017/08/31/what-cryptocurrency-wallet/) ili za slanje transakcija. Neće sinkronizirati blockchain ni u _light_ (laganom) ni u _full_ (punom) načinu rada, niti će pokrenuti neko korisničko sučelje.
+Od ožujka 2019. Nimbus će sinkronizirati Ethereum [proof of work](https://bitfalls.com/hr/2018/04/24/whats-the-difference-between-proof-of-work-pow-proof-of-stake-pos-and-delegated-pos/) lanac do bloka 1.1 milijun, no ne može biti korišten za spajanje na neki [novčanik](https://bitfalls.com/hr/2017/08/31/what-cryptocurrency-wallet/) ili za slanje transakcija. Neće potpuno sinkronizirati blockchain ni u _light_ (laganom) ni u _full_ (punom) načinu rada, niti će pokrenuti neko korisničko sučelje.
+
+Što se tiče Ethereum 2.0 strane Nimbusa koja se razvija u [nim-beacon-chain repozitoriju](https://github.com/status-im/nim-beacon-chain), trenutno će simulirati nekoliko validatora i beacon čvorova, spojiti ih, te graditi beacon lanac. To se može pokrenuti i lokalno pa slobodno isprobajte prateći upute iz [službenih objava](https://our.status.im/tag/nimbus).
 
 ## Dakle, koji mu je cilj?
 
-![Nimbusov cilj](../images/03.png)
+![Nimbusov cilj](/wp-content/uploads/2018/11/03.png)
 
-Tim trenutno razvija set alata i modula koji će zajedno zadovoljiti uvjete da podrže Ethereum 2.0, poput podrške za sharding ili validaciju putem [Proof of Stake](https://bitfalls.com/hr/2018/04/24/whats-the-difference-between-proof-of-work-pow-proof-of-stake-pos-and-delegated-pos/) sustava. Budući da Ethereum 2.0 mora ostati kompatibilan s Ethereumom 1.0, funckionalnost za 2.0 sadržavati će sve što je potrebno za 1.0. To znači da će Nimbus biti alternativa za [Geth](https://bitfalls.com/hr/2018/02/12/explaining-ethereum-tools-geth-mist/) i Parity kao _full_ čvorove, ali će imati i mogućnost pokretanja u _light_ načinu rada - bez da treba preuzeti cijeli blockchain - i za [_stateless_](https://ethresear.ch/t/the-stateless-client-concept/172) način rada.
+Tim trenutno razvija set alata i modula koji će zajedno zadovoljiti uvjete da podrže Ethereum 2.0, poput podrške za sharding ili validaciju putem [Proof of Stake](https://bitfalls.com/hr/2018/04/24/whats-the-difference-between-proof-of-work-pow-proof-of-stake-pos-and-delegated-pos/) sustava. Istovremeno ali zasebno se razvija i Ethereum 1.0 strana Nimbusa, što znači da će Nimbus biti alternativa za [Geth](https://bitfalls.com/hr/2018/02/12/explaining-ethereum-tools-geth-mist/) i Parity kao _full_ čvorove, ali će imati i mogućnost pokretanja u _light_ načinu rada - bez da treba preuzeti cijeli blockchain - i za [_stateless_](https://ethresear.ch/t/the-stateless-client-concept/172) način rada.
 
-Kada će Nimbus biti tehnološki u toku s trenutnim klijentima, tim će krenuti u daljnje implementacije. Budući da je testove koje smo spomenuli prije lakše proći u _full_ načinu rada, Nimbus će vjerojatno prvo biti razvijen kao _full_ čvor, a zatim nadograđen na _light_ način rada.
+Prioritet je razviti Nimbus kao Ethereum 2.0 čvor, a tek nakon toga usavršiti 1.0 stranu. To je zbog toga jer Nimbus tim financije dobiva od Ethereum Fundacije koja prioritizira razvoj novog Ethereuma.
 
 ## Modularnost
 
@@ -36,7 +38,7 @@ Specifično, Nimbus će imati razne verzije. Moći ćete ga kompajlirati (izgrad
 
 I, da, sve ovo će biti moguće s Nimbusom.
 
-![Nimbus, šampion](../images/04.png)
+![Nimbus, šampion](/wp-content/uploads/2018/11/04.png)
 
 Sučelja (poput JSON-RPC ili neko za _embedded Javu_) biti će razvijena za razne operativne sustave na kojima ćemo koristiti Nimbus. Tim se usredotočuje na otvoreni hardver, no ni jedna platforma neće biti zapostavljena. Nimbus će, primjerice, pružati i [EVM-C sučelje](https://github.com/ethereum/evmc) pa će svi klijenti koji koriste isti moći odabrati žele li koristiti Aleth, Geth, ili Nimbus.
 
@@ -59,58 +61,114 @@ Dosta priče, ajmo graditi.
 Prije nego počnemo, pretpostavlja se da
 
 - ste [pročitali uvod u Nim](https://bitfalls.com/2018/10/09/introduction-into-the-nim-language/) i imate Nim na sustavu
-- koristite sustav poput OS X ili Linux koji je u prijateljskim odnosima s komandnom linijom (Terminal). Ako niste, predlažemo da instalirate neku virtualnu mašinu koja ima sav potrebni softver već instaliran. Primjerice, [Homestead Improved](http://www.sitepoint.com/quick-tip-get-homestead-vagrant-vm-running/) je vrlo dobro rješenje za sve slučajeve u kojima nije potreban ekran, tj. sučelje koje nije tekstualno.
+- koristite sustav poput OS X ili Linux koji je u prijateljskim odnosima s komandnom linijom (Terminal). Ako niste, predlažemo da instalirate neku virtualnu mašinu koja ima sav potrebni softver već instaliran. Primjerice, [naša Nim Vagrant mašina](https://our.status.im/setting-up-a-local-vagrant-environment-for-nim-development/) je vrlo dobro rješenje.
 
-### Instalacije
+_Napomena: Nimbus koristi Makefile sustav za igradnju komponenti kako bi proces pokretanja softvera bio identičan na svim platformama. Ne koristimo Nimov upravitelj paketima Nimble jer je fundamentalno nefunkcionalan i ne izgleda da će problemi uskoro biti riješeni._
 
-Da pokrenemo Nimbus prvo moramo instalirati RocksDB bazu podataka i noviju verziju Nima. Na OS X izvršite:
+### Instalacija
 
-```bash
-brew install rocksdb
-curl https://nim-lang.org/choosenim/init.sh -sSf | sh
-```
-
-Na Linux sustavima, sljedeće bi trebalo biti dovoljno:
-
-```bash
-sudo apt-get install librocksdb-dev rocksdb # or your own Linux distribution's equivalent
-curl https://nim-lang.org/choosenim/init.sh -sSf | sh
-```
-
-Pokretanje `nim --version` trebalo bi sada ispisati nešto slično ovome:
-
-```bash
-$ nim --version
-Nim Compiler Version 0.19.0 [MacOSX: amd64]
-Compiled at 2018-09-26
-Copyright (c) 2006-2018 by Andreas Rumpf
-
-git hash: f6c5c636bb1a1f4e1301ae0ba5a8afecef439132
-active boot switches: -d:release
-```
-
-Nakon toga preuzimamo izvorni kod Nimbusa u mapu u kojoj želimo da naši Nim projekti žive.
+Klonirajte Nimbus:
 
 ```bash
 git clone https://github.com/status-im/nimbus
 cd nimbus
 ```
 
-Nim dolazi s vlastitim dodatkom za upravljanje s _dependencies_ (softverom o kojem ovisi) po imenu [Nimble](https://github.com/nim-lang/nimble). To znači da se sve što je Nimbusu potrebno za pokretanje može povući na lokalno računalo naredbom `nimble install`. Ako ste već koristili Nim, možda ćete vidjeti pitanje poput `Prompt: eth_common@1.0.0 already exists. Overwrite? [y/N]` - odgovorite s Y.
-
-_Napominjemo da Nimble sprema sve pakete u zajedničku mapu, pretvarajući ih tako u zajedničke pakete svih vaših projekata. To isto tako znači da ti paketi neće biti vidljivi u projektu u kojem pokrećete `nimble install`. Paketi će biti u `.nimble/pkgs` u mapi vašeg korisnčkog računa. Zašto do toga dolazi i kako to zaobići pogledati ćemo detaljnije u jednom od budućih članaka._
-
-Nakon instalacije, naredba `nimbus` će postati dostupna. Prije nego je pokrenemo, pogledajmo što kaže `nimbus --help`. Ako to radi, pokrenimo `nimble test` - ta naredba pokreće testove koje smo spomenuli gore.
+Da pokrenemo Nimbus prvo moramo instalirati RocksDB bazu podataka i noviju verziju Nima. Na OS X izvršite:
 
 ```bash
-nimble test
+brew install rocksdb
+```
+
+Na Linux sustavima, sljedeće bi trebalo biti dovoljno:
+
+```bash
+sudo apt-get install librocksdb-dev rocksdb # or your own Linux distribution's equivalent
+```
+
+Na Windows sustavu, prvo se pobrinite da imate `make` instaliran - to možete učiniti pomoću popularnih upravitelja paketima kao što je [Chocolatey](https://chocolatey.org):
+
+```bash
+choco install make
+```
+
+Alternativno, instalirajte `MinGW32make.exe` s [MinGW web stranice](http://www.mingw.org/).
+
+_Napomena: Windows zahtijeva da dodate programe koje želite moći pokrenuti iz bilo kojeg dijela sustava u vašu PATH varijablu radnog okruženja. To se radi tako da otvorite Start izbornik, tražite "env", kliknete na Edit System Environment Variables i izmijenite PATH unos na popisu tako da dodate novu vrijednost na dno koja odgovara lokaciji gdje ste instalirali `make` ili `mingw make` (ako ste koristili Chocolatey, ovaj korak nije potreban). Moj PATH izgleda [ovako](https://imgur.com/a/yQIi6Qa)._
+
+Samo na Windowsima - pokrenite:
+
+```bash
+make fetch-dlls
+```
+
+ili ako ste instalirali `mingw32make.exe`:
+
+```bash
+mingw32make.exe fetch-dlls
+```
+
+To će preuzeti RocksDB i SQLite baze podataka i staviti ih u mapu `build` odakle će im Nimbus moći pristupiti.
+
+## Pokretanje
+
+Da izgradite Nimbus iz izvornog koda, na Linux / OS X:
+
+```bash
+make
+```
+
+na Windows:
+
+```bash
+make
+```
+
+ili 
+
+```bash
+mingw32make.exe
+```
+
+Nimbus će biti izgrađen i smješten u `build` mapu odakle ga možete pokrenuti naredbom `nimbus` ili `nimbus.exe` u Windows okruženju.
+
+Da pokrenete testove:
+
+```bash
+make test # (ili mingw32make.exe test na Windowsima s MinGW)
 ```
 
 Ako sve prođe kako treba, ekran bi trebao vrištati zelene `[OK]`-ove.
 
 ![](../images/06.png)
 
-Nimbus možete pokrenuti pomoću naredbe `nimbus`. Potražiti će neke čvorove i održati vezu s njima. Pokušati će se i sinkronizirati s blockchainom no zbog greške prilikom sinkronizacije kod bloka koji još ne zna obraditi stati će s radom. To je trenutni doseg Nimbus klijenta.
+Da ažuirate datoteke za ponovnu izgradnju ako je došlo do nekih promjena:
+
+```bash
+make update
+```
+
+Da počistite izgrađene datoteke i počnete ispočetka:
+
+```bash
+make clean
+```
+
+## Ethereum 2.0
+
+Da pokrenete i testirate Ethereum 2.0 verziju Nimbusa (simulaciju mreže):
+
+```bash
+make eth2_network_simulation
+```
+
+Pokrenuti će se nekoliko Beacon čvorova i validatori će probati izgraditi beacon lanac. Više o samoj simulaciji pogledajte u [ovom članku](https://our.status.im/nimbus-testnet-simulation).
+
+Da počnete simulaciju ispočetka i generirate sve datoteke iz nule:
+
+```bash
+make clean_eth2_network_simulation_files
+```
 
 ---
 
