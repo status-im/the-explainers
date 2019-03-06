@@ -4,7 +4,7 @@ Prerequisite knowledge? Just [this short post about Validators](https://our.stat
 
 Now grab a cup, pull up a chair and throw your feet in the air. Let's dive in.
 
-![Coffee ready?](../images/01.png)
+![Coffee ready?](/content/images/2018/11/01-2.png)
 
 ### The Beacon Chain
 
@@ -22,7 +22,7 @@ Note that after a full transition to a PoS system and once the PoW chain has bee
 
 Once registered this way on the beacon chain, a Validator can be randomly picked to validate on one or two shards (see the Validators post for further clarification on that part). The Validator will be combining the data from its designated shard(s) with the Beacon Chain data, and proposing a new block or confirming/rejecting some other Validator's proposed block until they've had their turn in the *Cycle*.
 
-![Extending the chain](../images/02.png)
+![Extending the chain](/content/images/2018/11/02-1.png)
 
 To reiterate, the Beacon Chain does not have _data_ - it will not store the balances of accounts, locations of tokens, state of dapps, or any other information the current blockchain stores. Firstly, it stores the list of Validators. Secondly, it stores _attestations_.
 
@@ -34,7 +34,7 @@ The what now...?
 
 When you _hash_ something, you turn it into a series of letters and numbers that is completely different every time even a single character in the original _something_ changes. For example, if you open [this generator](https://passwordsgenerator.net/sha256-hash-generator/), and write `Hell`, the hash produced under the field will be __completely__ different from the one produced when you just add `o` and make it `Hello`. 
 
-![](../images/hash.gif)
+![](/content/images/2018/11/hash.gif)
 
 If you change even a single pixel in an image that's full-HD in resolution and hash it, that hash will also be completely different from the original one. This means that even the smallest change will produce dramatically different hashes, making changes very easy to detect.
 
@@ -48,7 +48,7 @@ By now you may be wondering how [mining and validations nodes](https://bitfalls.
 
 There are two main types of "nodes" you need to be aware of now, each with its set of subtypes which we will not cover here.
 
-**Beacon nodes** are in charge of _validating validators_, aggregating signatures (i.e. many validators submit many keys and processing them individually would take ages, so we're looking into processing many of them at once), grabbing the necessary data with which to build new blocks and passing it on for validation to Validators. Beacon nodes are equivalent to miners in the current system in that they're heavier on the resources and will need to be run on non-trivial hardware.
+**Beacon nodes** are in charge of _validating validators_, aggregating signatures (i.e. many validators submit many keys and processing them individually would take ages, so we're looking into processing many of them at once), grabbing the necessary data with which to build new blocks and passing it on for validation to Validators. Beacon nodes are equivalent to miners in the current system in that they're heavier on the resources and will need to be run on non-trivial hardware. In terms of incentive for running the nodes, however, that's still a [hotly debated and somewhat controversial issue](https://github.com/ethereum/eth2.0-specs/issues/157).
 
 **Validator Clients** on the other hand can (in theory) be extremely lightweight bits of software like what we're building at Nimbus. They're programs the only function of which is to remain connected to the internet and to keep staking your Ether in the system (a persistent connection is required because a validator needs to sign their attestation and send it back to the network when requested). The Validator clients build the blocks from the data provided by the beacon nodes and send them back to the network. The Validator clients also suffer the consequences if they misbehave or go offline - it is there that the _slashing_ (i.e. reduction of stake) happens. While you may be expecting to validate from something like a smartphone, that's probably not going to happen - the battery would die instantly due to the needed bandwidth (constant communication with the network) and too frequent read/write operations on the phone's hard drive.
 
@@ -58,9 +58,9 @@ There are other types of nodes as well - light clients, ultra light clients, sta
 
 Right now the Nimbus team is working on several components of the Beacon Chain [specification](https://github.com/ethereum/eth2.0-specs/blob/master/specs/beacon-chain.md).
 
-Our main body of work regarding the beacon chain itself is in a standalone repository we dubbed [nim-beacon-chain](https://github.com/status-im/nim-beacon-chain). It's separate from Nimbus itself because the aim is to develop it as a component to be plugged into Nimbus' build cycle as needed. In other words, when running Nimbus as super-light node, you won't need to use the beacon chain module - that can hardly run on an old smartphone anyway. That said, this repo will be integrated into Nimbus some time in December to make sure it works on both fronts.
+Our main body of work regarding the beacon chain itself is in a standalone repository we dubbed [nim-beacon-chain](https://github.com/status-im/nim-beacon-chain). It's separate from Nimbus itself because the aim is to develop it as a component to be plugged into Nimbus' build cycle as needed. In other words, when running Nimbus as super-light node, you won't need to use the beacon chain module - that can hardly run on an old smartphone anyway. That said, this repo is pulled in as a dependency of Nimbus and can already be tested both as a part of Nimbus, and on its own. For more info on that, please see [our development update](https://our.status.im/nimbus-development-update-feb-2019/).
 
-While we are aiming for a proof of concept release in March 2019 which should be able to do "beaconing" - connecting to other clients, validating, shuffling validators, building blocks - the biggest blockers we currently foresee are undefined areas of the specification. All of the client implementer teams sorely want cooperation and smooth communication between clients, but without specced out communication methods it'll be hard to agree, so this needs more work. Likewise, the commit/reveal scheme of the RANDAO randomizer (see _Two Point Oh: Randomness_) is still in the air in regards to its definition in the spec, so it's not too clear on how this should be implemented by the clients. Last but not least, the fork choice rule - the method by which a client picks which fork to follow in a chain with diverging blocks - is also largely undefined and under discussion.
+Right now, Nimbus can do "beaconing" - connecting to other clients, validating, shuffling validators, building blocks - and for further progress the biggest blockers we currently foresee are undefined areas of the specification. All of the client implementer teams sorely want cooperation and smooth communication between clients, but without specced out communication methods it'll be hard to agree, so this needs more work. Likewise, the commit/reveal scheme of the RANDAO randomizer (see _Two Point Oh: Randomness_) is still in the air in regards to its definition in the spec, so it's not too clear on how this should be implemented by the clients. Last but not least, the fork choice rule - the method by which a client picks which fork to follow in a chain with diverging blocks - is also largely undefined and under discussion.
 
 We're all basically doing this right now.
 
