@@ -76,18 +76,16 @@ cd nimbus
 
 ### Dependencies
 
-To run Nimbus, we'll need the RocksDB database and a newer version of Nim. On OS X, execute:
+To run Nimbus, we'll need the RocksDB database. On OS X, execute:
 
 ```bash
 brew install rocksdb
-curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 ```
 
 On Linux, this should do it:
 
 ```bash
 sudo apt-get install librocksdb-dev rocksdb # or your own Linux distribution's equivalent
-curl https://nim-lang.org/choosenim/init.sh -sSf | sh
 ```
 
 On Windows, please first make sure you have `make` installed - either in the form of `MinGW32make.exe` via [MinGW website](http://www.mingw.org) or regular old make installed through Git Bash or a package manager like Chocolatey:
@@ -140,7 +138,7 @@ The Nimbus client will now be in `build/nimbus` on any OS and can be run with th
 ./build/nimbus
 ```
 
-It should synchronize up to block 49439 and then crash, as mentioned above.
+It should synchronize up to block 1.1 million and then crash, as mentioned above. This will take a few hours and will probably need some few dozen GB of hard drive space!
 
 To test, run:
 
