@@ -16,7 +16,7 @@ This is what a beautiful screen of passing tests looks like.
 
 ![Passing tests](https://our.status.im/content/images/2019/01/02.png)
 
-As of December 2018, Nimbus will sync the proof of work Ethereum blockchain up to block 49439 and then crash. We're slowly but surely ironing out our implementation of the EVM and working towards a stable full chain sync. [Help us debug it!](https://github.com/status-im/nimbus/issues)
+As of March 2010, Nimbus will sync the proof of work Ethereum blockchain up to block 1.1 million and then crash. We're slowly but surely ironing out our implementation of the EVM and working towards a stable full chain sync. [Help us debug it!](https://github.com/status-im/nimbus/issues)
 
 At the same time, the Ethereum 2.0 side of Nimbus is being developed in the [nim-beacon-chain](https://github.com/status-im/nim-beacon-chain) repository, and this implementation is currently able to simulate a beacon chain and spawn simulated beacon nodes that talk to each other and build this new blockchain. For status updates about that, please [follow our blog](https://our.status.im/tag/nimbus).
 
@@ -42,7 +42,7 @@ And, yes, you'll be able to do all this.
 
 Interfaces (like JSON-RPC, or one for embedded Java) will be developed for the different operating systems Nimbus is being installed on - we're focusing on open hardware, but we're not planning to leave any platform behind. Nimbus will provide an [EVM-C interface](https://github.com/ethereum/evmc), for example, so all clients that use it will be able to choose if they want to use Aleth, Geth or Nimbus.
 
-Another modular part will be the back-end (SQLite or RocksDB), the logging (console, file, json, database) and the networking protocols i.e. being agnostic regarding specific Eth protocols and using plain http/s to bypass filtering (like public WiFi or censorship).
+Another modular part will be the back-end (SQLite or RocksDB), the logging (console, file, json, database) and the networking protocols i.e. being agnostic regarding specific Eth protocols and using plain http/s to bypass filtering (like public WiFi or censorship). This is being done with Libp2p as the base networking layer which supports multi-address so you can use a single address to connect to a node through a variety of protocols.
 
 ## Are you competing with Geth?
 
