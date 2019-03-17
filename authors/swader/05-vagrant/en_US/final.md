@@ -74,26 +74,21 @@ In the VM (`vagrant ssh`), to try out Nimbus:
 ```bash
 git clone https://github.com/status-im/nimbus
 cd nimbus
-nimble install
-nimble test
+make update
+make test
 ```
 
 This should first produce some successful test output. 
 
-To run Nimbus, execute `nimbus/nimbus`. Depending on its current state of development (constantly in flux), it might work up to block 50000 or so.
+To run Nimbus, execute `nimbus/nimbus`. Depending on its current state of development (constantly in flux), it might work up to block 1.2 million or so.
 
-To get started with Nim-beacon-chain:
-
-```bash
-git clone https://github.com/status-im/nim-beacon-chain
-cd nim-beacon-chain; nimble install; nimble test
-```
-
-The beacon chain proof of concept currently only passes some tests, but you can also run a simulation which boots up several instances and generates a hundred mock-validators, then starts processing blocks.
+To get started with Nim-beacon-chain, in the same folder run:
 
 ```bash
-tests/simulation/start.sh
+make eth2_network_simulation
 ```
+
+To learn more about what this simulation is, read our [development updates](https://our.status.im/tag/nimbus/) and the [simulation intro](https://our.status.im/nimbus-testnet-simulation/). In a nutshell, the sim runs some validators and beacon nodes and builds its own local testnet - a local beacon blockchain. We're currently [looking for testers](https://our.status.im/nimbus-test-pilots-wanted/) for this aspect of development!
 
 Congrats! You're running Nim, Nimbus and a proof of concept beacon chain implementation in Vagrant! Now you're ready to file bugs and contribute to the projects!
 
