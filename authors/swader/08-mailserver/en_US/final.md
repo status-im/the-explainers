@@ -1,4 +1,4 @@
-On April 1st 2019, Status is planning its first ["shoot ourselves in the foot" day](https://discuss.status.im/t/weekly-status-attack-day/814). On this day we'll turn off access to centralized services in an attempt to simulate an attack on the network and check how shackle-free we really are.
+On April 1st 2019, Status is planning its first [Chaos Unicorn Day](https://discuss.status.im/t/chaos-unicorn-day-april-1-2019-aka-kill-our-cluster/974/13). On this day we'll turn off access to centralized services in an attempt to simulate an attack on the network and check how shackle-free we really are.
 
 One of the best ways to make sure Status survives such apocalypses (apocaly?) is to run your own Status node. This not only lets you make sure you receive messages that are meant for you with increased reliability, but you also strengthen the network for others. Also as per the FAQ:
 
