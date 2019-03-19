@@ -164,4 +164,4 @@ Windows is a little iffy when it comes to this type of tool, so support for Wind
 
 Congratulations, you are now running your own Status node. Everyone who is personally invested in a crypto project succeeding should do the same and support it by running its nodes (including Ethereum full nodes!) so please, spread the word!
 
-_Note: You can now buy ready-made pre-synced plug and play Status and Ethereum full nodes from [here](). They are sold at cost, purely to help the network._
+_Note: You can now buy ready-made pre-synced plug and play Status and Ethereum full nodes from [here](https://blockandmortar.io/). They are sold at cost, purely to help the network._
