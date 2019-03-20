@@ -78,6 +78,8 @@ User=ethereum
 WantedBy=multi-user.target
 ```
 
+_If you're not using the pre-configured NanoPC image, remember to modify the `User` value so it's your own username in the system, OR create an `ethereum` user, otherwise the service won't be able to run. I recommend creating the user._
+
 Make sure the `ExecStart` line references the location of your binary: move the binary to that path, symlink to it, or modify the line so it matches. If you followed the short installation process at the beginning of this post, it should match.
 
 Reload the services registry with `sudo systemctl daemon-reload`.
