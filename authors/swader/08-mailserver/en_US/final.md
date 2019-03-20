@@ -160,6 +160,26 @@ Keep in mind that in the Profile settings in Status your Network refers to the E
 
 Windows is a little iffy when it comes to this type of tool, so support for Windows is still in flux. However, if you'd like to give it ago and don't have a Linux OS, feel free to use [our Vagrant box](https://github.com/status-im/nim-vagrant). It's configured for [Nimbus](https://nimbus.status.im) but works rather well for any kind of node you'd like to run locally, and you get a proper Linux environment, too.
 
+### Running a bootnode
+
+Status can also be built as a bootnode-only, which will let you run a very lightweight "beacon" through which nodes find each other. It's a good idea to host a bootnode on an always-on always-online device, so that others can connect with each other through it.
+
+To build a bootnode (if you didn't install or update as per instructions at the beginning):
+
+```bash
+sudo apt-get install golang -y
+cd $HOME
+git clone https://github.com/status-im/status-go status-go/src/github.com/status-im/status-go
+cd status-go/src/github.com/status-im/status-go
+GOPATH=$HOME/status-go make bootnode
+sudo cp build/bin/bootnode /usr/bin/status-bootnode
+rm -rf $HOME/status-go
+```
+
+Then run it with `status-bootnode`.
+
+You are now helping other nodes find each other in the network.
+
 ---
 
 Congratulations, you are now running your own Status node. Everyone who is personally invested in a crypto project succeeding should do the same and support it by running its nodes (including Ethereum full nodes!) so please, spread the word!
