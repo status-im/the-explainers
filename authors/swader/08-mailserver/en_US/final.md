@@ -20,7 +20,7 @@ cd $HOME
 git clone https://github.com/status-im/status-go status-go/src/github.com/status-im/status-go
 cd status-go/src/github.com/status-im/status-go
 GOPATH=$HOME/status-go make statusgo
-sudo rm /usr/bin/statusgo && sudo cp build/bin/statusd /usr/bin/statusgo
+sudo rm -f /usr/bin/statusgo && sudo cp build/bin/statusd /usr/bin/statusgo
 rm -rf $HOME/status-go
 ```
 
@@ -37,7 +37,7 @@ The instructions will apply to non-NanoPC setups as well, though - as long as yo
 
 _Note: If you're using the [pre-installed ARM approach](https://github.com/diglos/userpatches), since you don't need an Ethereum full node synced to run Status' software, you can disable Geth in this setup with `sudo systemctl disable geth && sudo systemctl stop geth` (it's on and enabled by default)._
 
-Please create the files `/etc/ethereum/status.im.conf` and `/etc/ethereum/status.im.json` if they don't exist. The `conf` file should contain just a single line referencing the other file: `ARGS="-c /etc/ethereum/status.im.json"`.
+Please create the folder `/etc/ethereum` (with `sudo mkdir /etc/ethereum`) and the files `/etc/ethereum/status.im.conf` and `/etc/ethereum/status.im.json` if they don't exist. The `conf` file should contain just a single line referencing the other file: `ARGS="-c /etc/ethereum/status.im.json"`.
 
 The `.conf` file serves as a provider of command-line arguments for when you actually run the status service. In other words, when the computer or the `systemctl` utility launches `statusgo`, it does so by passing to it the arguments listed in this `conf` file. Right now, this file contains just a single entry: `ARGS="-c /etc/ethereum/status.im.json"`, meaning it is supposed to pass the Status node an additional file with information on how to run. That information is in our second file, `status.im.json`.
 
