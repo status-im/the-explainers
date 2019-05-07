@@ -20,7 +20,7 @@ In order to generate a reasonably random number, a computer will rely on a seed:
 
 ![](https://our.status.im/content/images/2019/05/cursor-random.png)
 
-How can we call this random if we're generating the seed and the same math is always applied to this seed? The thing is, when enough hard-to-repeat seeds are put together, the resulting number is _reasonably random_. It is impossible for a human to repeat the exact same mouse movement pattern over an area of 5 million pixels, so this is somewhat reliable. Sprinkle in some other values like time of day, amount of daylight collected by the webcam's sensor, and maybe the number of times a sport's team scored a goal that year, and you get a _reasonably random_ seed.
+How can we call this random if we're generating the seed and the same math is always applied to this seed? The thing is, when enough hard-to-repeat seeds are put together, the resulting number is _reasonably random_. It is impossible for a human to repeat the exact same mouse movement pattern over an area of 5 million pixels, so this is somewhat reliable. Sprinkle in some other values like time of day, [positions of lava in a hundred lava lamps like CloudFlare does](https://blog.cloudflare.com/randomness-101-lavarand-in-production/), and maybe the number of times a sport's team scored a goal that year, and you get a _reasonably random_ seed.
 
 ## Randomness in blockchains
 
@@ -69,7 +69,7 @@ If we have a number X, then for example a six-fold quadratic VDF of that X can b
 1861403728794734215467410604755702820123364205073812627233564853668212890625
 ```
 
-As we go deeper, the results get more absurdly large. A reasonably deep VDF would take a long time to calculate as the math gets pretty intense for any computer.
+As we go deeper, the results get more absurdly large. A reasonably deep VDF would take a long time to calculate as the math gets pretty intense for any computer. This example was inspired by an actual VDF that's up until recently been a part of a [cryptographic puzzle for opening a time-capsule at MIT](https://www.wired.com/story/a-programmer-solved-a-20-year-old-forgotten-crypto-puzzle/) - it used a depth od 80 trillion squares.
 
 So what's the point of this?
 
@@ -93,7 +93,11 @@ One epoch in Ethereum 2.0 is 6.4 minutes. One RANDAO reveal happens every epoch,
 
 ![](https://our.status.im/content/images/2019/05/header.png)
 
-In Nimbus, we're currently simulating this randomness because the VDF aspect of RANDAO is still in the research phase. As the spec nears finalization, so will out implementation and this space will be updated accordingly.
+In Nimbus, we're in line with the spec. Our [RANDAO implementation](https://github.com/status-im/nim-beacon-chain/blob/46b4154ce809d80078b5887db3f2a43ef17bce71/beacon_chain/spec/validator.nim#L15-L17) is complete for the 0.5.1 version of the Ethereum 2.0 specification. We need to make sure [our tests](https://github.com/status-im/nim-beacon-chain/blob/c53de3e/tests/test_validator.nim#L28) match the [official ones](https://github.com/ethereum/eth2.0-spec-tests) but apart from that we're good to go.
+
+Now, it's too soon to talk about VDF. VDF is still in the research phase and once it's added to the spec, it'll take a while for clients to catch up. Methods of talking to remote VDF devices will have to be devised, staking rewards modified slightly to lean towards the block producers who also run VDFs, and so on. Right now, given that RANDAO is random enough for the blockchain's early needs, it'll do as the base layer for shuffling validators and other randomness.
+
+We'll update this section as our implementation progresses.
 
 ## Conclusion
 
