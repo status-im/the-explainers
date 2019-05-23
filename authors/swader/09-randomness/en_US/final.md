@@ -61,12 +61,12 @@ If we have a number X, then for example a six-fold quadratic VDF of that X can b
 ```js
 ((((((5^2)^2)^2)^2)^2)^2)^2 =
 (((((25^2)^2)^2)^2)^2)^2 =
-((((225^2)^2)^2)^2)^2 =
-(((50625^2)^2)^2)^2 =
-((2562890625^2)^2)^2 =
-(6568408355712890625^2)^2 =
-43143988327398919500410556793212890625^2 =
-1861403728794734215467410604755702820123364205073812627233564853668212890625
+((((625^2)^2)^2)^2)^2 =
+(((390625^2)^2)^2)^2 =
+((152587890625^2)^2)^2 =
+(23283064365386962890625^2)^2 =
+542101086242752217003726400434970855712890625^2 =
+293873587705571876992184134305561419454666389193021880377187926569604314863681793212890625
 ```
 
 As we go deeper, the results get more absurdly large. A reasonably deep VDF would take a long time to calculate as the math gets pretty intense for any computer. This example was inspired by an actual VDF that's up until recently been a part of a [cryptographic puzzle for opening a time-capsule at MIT](https://www.wired.com/story/a-programmer-solved-a-20-year-old-forgotten-crypto-puzzle/) - it used a depth od 80 trillion squares.
@@ -87,7 +87,7 @@ In Ethereum 2.0, this VDF has been defined to be 102 minutes long - over an hour
 
 Such a highly specialized machine makes sure that anyone else who attempts to develop a better ASIC to regain that final bit of influence has to make it [100 times more efficient](https://www.zeroknowledge.fm/74) for it to be effective. Developing this device would be financial suicide, barring some manner of high-profile exploit that would in all likelihood completely destroy Ethereum as we know it were it to be successful.
 
-One epoch in Ethereum 2.0 is 6.4 minutes. One RANDAO reveal happens every epoch, which means we can run a new VDF for every epoch. This comes down to 16 VDFs - and thereby 16 random numbers - per hour. This randomness is then the seed from which the next set of validators is selected, guaranteeing fairness.
+One epoch in Ethereum 2.0 is 6.4 minutes. One RANDAO reveal happens every epoch, which means we can run a new VDF for every epoch. This comes down to 16 VDFs - and thereby 16 random numbers - per VDF period of 102.4 minutes. This randomness is then the seed from which the next set of validators is selected, guaranteeing fairness.
 
 ## Randomness in Nimbus
 
