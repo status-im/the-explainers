@@ -8,11 +8,15 @@ Well, Eth2 gives you finality as a guarantee, an objective truth enshrined in th
 
 Let's get specific. We'll try to define all the new terms as we encounter them.
 
-**Finality** is the concept of being so certain two _competing finalized checkpoints_ cannot exist, that a third of the active validators would get [slashed](https://twitter.com/drakefjustin/status/1150854927310303233) if this happened. We call this _economic finality_.
+**Finality** is the concept of being so certain two _competing finalized checkpoints_ cannot exist, that at least a third of the active validators would get [slashed](https://twitter.com/drakefjustin/status/1150854927310303233) if this happened. We call this _economic finality_.
+
+> Note: you may be wondering why a third of the validators? Because as we'll see below, having two competing finalized checkpoints requires two thirds of validators to vote on one thing, and two thirds on another, competing thing. In a situation where only one of those things is possible, at least a third of all participants are by definition wrong.
 
 It is in the validators' best interest to finalize properly and study the beacon state at every turn in order not to make such an illegal move. So what is a _finalized checkpoint_? A _checkpoint_ is a slot in an epoch (a unit of time 6.4 minutes in length containing 64 slots each) that is at its _boundary_ - the last slot in the epoch. So what's a _finalized_ checkpoint? To explain that, let's explain justification.
 
 Justification is the act of validators voting on checkpoints and deciding which one is the tip of the beacon chain. If 2/3 of validators agree on a **pair of epochs** such that the source epoch is justified, then the target epoch is also justified. If two epochs in a row (or two in a row skipping one) are justified, the first one of those two is deemed _finalized_.
+
+> Note: the above definition is dramatically simplified for ease of understanding. Some other factors are also at play, but more on that in a separate post.
 
 So a finalized epoch is a _really really justified epoch_, in essence, with one key difference - when things are justified, you can still rewind time to go to that point. When you finalize, it becomes incredibly difficult to rewrite history.
 
@@ -38,4 +42,4 @@ This one is invalid because voting to continue the chain by following the lower 
 
 ---
 
-Hopefully this clears up any justification and finalization questions you may have had. Many thanks to [Dustin](https://github.com/tersec), [Mamy](https://github.com/mratsim), and [Justin](https://twitter.com/drakefjustin) for their review of this short explainer!
+Hopefully this clears up any justification and finalization questions you may have had. Many thanks to [Dustin](https://github.com/tersec), [Mamy](https://github.com/mratsim), and [Justin](https://twitter.com/drakefjustin) and [Danny](https://twitter.com/dannyryan) for their help with this short explainer!
